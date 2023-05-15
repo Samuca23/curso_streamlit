@@ -2,10 +2,10 @@ import streamlit as st
 from PIL import Image
 
 st.header("Adicionando Imagem")
-image = Image.open('fest.jpg')
+image = Image.open('imagem/fest.jpg')
 st.image(image, caption='festa do chope')
 
-image = Image.open('show.jpg')
+image = Image.open('imagem/show.jpg')
 st.image(image, caption='festa do chope')
 
 st.header("Áudio")
