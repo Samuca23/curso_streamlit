@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import datetime
+
+from io import StringIO
 
 if st.button('Mensage') :
     st.write('Olá Mundo')
@@ -83,3 +86,41 @@ st.write('The current number is', number)
 st.header("Utilizando Text Area")
 text_area = st.text_area('Text to analyze', ''' aaaa muito texxtooo''')
 st.write('Texto: ', text_area)
+
+st.header('Utilizando Input Date')
+d = st.date_input('Selecione seu aniversários',
+                     datetime.date(2019, 7, 6))
+st.write('Seu aniversário é: ', d)
+
+
+st.header("Input Time")
+t = st.time_input('Set an alarm for', datetime.time(8, 45))
+st.write('Alarme para ', t)
+
+
+st.header('Input File')
+uploaded_file = st.file_uploader('Chooser a file')
+if uploaded_file is not None :
+    bytes_data = uploaded_file.getvalue()
+    st.write(bytes_data)
+
+    stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
+    st.write(stringio)
+
+    string_data = stringio.read()
+    st.write(string_data)
+
+    dataframe = pd.read_csv(uploaded_file)
+    st.write(dataframe)
+
+
+st.header("Input Camera")
+picture = st.camera_input("Take a Picture")
+if picture :
+    st.image(picture)
+
+
+st.header("Color Picker")
+
+color = st.color_picker('Pick a color')
+st.write('The current Color is', color)
